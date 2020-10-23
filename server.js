@@ -8,7 +8,6 @@ import mongoData from './mongoData.js'
 
 // App Config
 const app = express()
-const port = process.env.port || 9000
 
 const pusher = new Pusher({
   appId: '1095567',
@@ -159,4 +158,7 @@ app.get('/get/lastMessage',(req,res)=>{
 })
 
 //Listen
-app.listen(port,()=>console.log(`Listening on localhost:${port}`))
+app.set('port', process.env.PORT || 9000);
+app.listen(app.get('port'), function () {
+  console.log('Express server Listening on port ' + app.get('port'));
+});
